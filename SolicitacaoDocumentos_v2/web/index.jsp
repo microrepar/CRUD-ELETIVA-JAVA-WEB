@@ -61,7 +61,7 @@
                     }
 
                     //resultado.getStatement().getConnection().close();
-%>
+                %>
             </tbody>
         </table>
     </body>

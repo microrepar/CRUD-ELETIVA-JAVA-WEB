@@ -11,9 +11,12 @@ package br.com.microrepar;
  */
 public class Requisito {
     
+    private long id;
     private String sigla;
     private String nome;
     private String escopo;
+    private String descricao;
+    
 
     public String getSigla() {
         return sigla;
@@ -37,5 +40,21 @@ public class Requisito {
 
     public void setEscopo(String escopo) {
         this.escopo = escopo;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 }

@@ -14,9 +14,11 @@ import java.util.List;
  */
 public class RequisitoDTO {
 
+    private long id;
     private String sigla;
     private String nome;
     private String escopo;
+    private String descricao;
 
     public String getSigla() {
         return sigla;
@@ -44,9 +46,11 @@ public class RequisitoDTO {
 
     public static RequisitoDTO de(Requisito requisito) {
         RequisitoDTO dto = new RequisitoDTO();
+        dto.setId(requisito.getId());
         dto.setSigla(requisito.getSigla());
         dto.setNome(requisito.getNome());
         dto.setEscopo(requisito.getEscopo());
+        dto.setDescricao(requisito.getDescricao());
         return dto;
     }
 
@@ -54,5 +58,21 @@ public class RequisitoDTO {
         List<RequisitoDTO> dtos = new ArrayList<>();
         requisitos.forEach(requisito -> dtos.add(RequisitoDTO.de(requisito)));
         return dtos;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 }
