@@ -15,6 +15,7 @@ import java.util.List;
 public class RequisitoDTO {
 
     private long id;
+    private String tipo;
     private String sigla;
     private String nome;
     private String escopo;
@@ -44,22 +45,6 @@ public class RequisitoDTO {
         this.escopo = escopo;
     }
 
-    public static RequisitoDTO de(Requisito requisito) {
-        RequisitoDTO dto = new RequisitoDTO();
-        dto.setId(requisito.getId());
-        dto.setSigla(requisito.getSigla());
-        dto.setNome(requisito.getNome());
-        dto.setEscopo(requisito.getEscopo());
-        dto.setDescricao(requisito.getDescricao());
-        return dto;
-    }
-
-    public static List<RequisitoDTO> listaDe(List<Requisito> requisitos) {
-        List<RequisitoDTO> dtos = new ArrayList<>();
-        requisitos.forEach(requisito -> dtos.add(RequisitoDTO.de(requisito)));
-        return dtos;
-    }
-
     public long getId() {
         return id;
     }
@@ -74,5 +59,30 @@ public class RequisitoDTO {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    
+    public static RequisitoDTO de(Requisito requisito) {
+        RequisitoDTO dto = new RequisitoDTO();
+        dto.setId(requisito.getId());
+        dto.setSigla(requisito.getSigla());
+        dto.setNome(requisito.getNome());
+        dto.setEscopo(requisito.getEscopo());
+        dto.setDescricao(requisito.getDescricao());
+        dto.setTipo(requisito.getTipo());
+        return dto;
+    }
+
+    public static List<RequisitoDTO> listaDe(List<Requisito> requisitos) {
+        List<RequisitoDTO> dtos = new ArrayList<>();
+        requisitos.forEach(requisito -> dtos.add(RequisitoDTO.de(requisito)));
+        return dtos;
     }
 }

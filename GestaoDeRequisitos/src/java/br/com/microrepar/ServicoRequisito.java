@@ -24,15 +24,31 @@ public class ServicoRequisito extends HttpServlet {
             throws ServletException, IOException {
         try {
             RequisitoDAO dao = new RequisitoDAO();
-                
+
             if (null != request.getParameter("acao")) {
-                System.out.println("=>> ENTROU NO IF AÇÃO");
+                if (request.getParameter("acao").equals("SALVAR")) {
+                    System.out.println("=>> ENTROU NO SALVAR");
+                    Requisito requisito = new Requisito();
+                    requisito.setSigla((String) request.getParameter("sigla"));
+                    requisito.setTipo((String) request.getParameter("tipo"));
+                    requisito.setNome((String) request.getParameter("nome"));
+                    requisito.setDescricao((String) request.getParameter("descricao"));
+                    requisito.setEscopo((String) request.getParameter("escopo"));
+                    dao.salvar(requisito);
+                    // Redireciona para a listagem com sendRedirect - evita o problema com o Reload (F5).
+                    response.sendRedirect(request.getContextPath()+"/ServicoRequisito");
+                    return;
+                }else if(request.getParameter("acao").equals("EXCLUIR")){
+                    long id = Long.parseLong(request.getParameter("id"));
+                    dao.excluir(id);
+                }
+
             } else {
                 Requisito requisito = new Requisito();
                 List<Requisito> requisitos = dao.listarTodos();
                 request.setAttribute("requisitos", RequisitoDTO.listaDe(requisitos));
                 request.getRequestDispatcher("/index.jsp").forward(request, response);
-                System.out.println("=>> ENTROU NO ELSE"+requisitos);
+                System.out.println("=>> ENTROU NO ELSE" + requisitos);
                 return;
             }
 

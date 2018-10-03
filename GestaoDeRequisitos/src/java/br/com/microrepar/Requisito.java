@@ -10,13 +10,21 @@ package br.com.microrepar;
  * @author m.c.silva
  */
 public class Requisito {
-    
+
     private long id;
+    private String tipo;
     private String sigla;
     private String nome;
     private String escopo;
     private String descricao;
-    
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
 
     public String getSigla() {
         return sigla;

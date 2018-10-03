@@ -41,7 +41,7 @@
         </select>
         <div>
             <input type="submit" value="CANCELAR" formaction="index.jsp">
-            <input type="submit" value="SALVAR">
+            <input type="submit" name="acao" value="SALVAR">
         </div>
     </form>
 </body>

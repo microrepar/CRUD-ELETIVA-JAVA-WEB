@@ -37,7 +37,8 @@ public class RequisitoDAO {
             requisito.setSigla(resultado.getString("sigla_req"));
             requisito.setNome(resultado.getString("nome_req"));
             requisito.setDescricao(resultado.getString("descricao_req"));
-            requisito.setEscopo(resultado.getString("escopo_req"));            
+            requisito.setEscopo(resultado.getString("escopo_req")); 
+            requisitos.add(requisito);
         }
         
         fonteConexao.devolverConexao(conexao);
@@ -45,4 +46,22 @@ public class RequisitoDAO {
         return requisitos;
     }
     
+    public void salvar(Requisito requisito) throws SQLException{
+        // Executa o SQL de inserção
+        System.out.println("=>> ENTROU NO REQUISITO DAO");
+        PreparedStatement sql = conexao.prepareStatement("INSERT INTO requisito(sigla_req, nome_req, descricao_req, escopo_req, tipo_req) VALUE(?,?,?,?,?)");
+        sql.setString(1, requisito.getSigla());
+        sql.setString(2, requisito.getNome());
+        sql.setString(3, requisito.getDescricao());
+        sql.setString(4, requisito.getEscopo());
+        sql.setString(5, requisito.getTipo());
+        sql.execute();
+        
+        fonteConexao.devolverConexao(conexao);
+    }
+    
+    public void excluir(long id) throws SQLException{
+        PreparedStatement sql = conexao.prepareStatement("DELETE FROM solicitacoes WHERE id=" + id);
+        sql.executeUpdate();
+    }
 }
