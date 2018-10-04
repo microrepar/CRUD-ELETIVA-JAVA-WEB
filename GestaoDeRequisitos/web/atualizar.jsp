@@ -4,7 +4,10 @@
     Author     : Silvio
 --%>
 
+<%@page import="br.com.microrepar.RequisitoDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<% RequisitoDTO requisito = (RequisitoDTO) request.getAttribute("requisito"); %>
 <!DOCTYPE html>
 <html>
 
@@ -17,31 +20,45 @@
     <h1>ATUALIZAR REQUISITO</h1>
 
     <form action="ServicoRequisito" method="post">
+        <input type="text" hidden name="id" value="<%= requisito.getId() %>">
         <div>
-
-            <input type="radio" name="tipo" id="id_tipo" value="funcional">Funcional
-            <input type="radio" name="tipo" id="id_tipo" value="nao_funcional">Não Funcional
+            <% if (requisito.getTipo().equals("FUNCIONAL")) {%>
+            <input type="radio" checked="on" name="tipo" id="id_tipo" value="FUNCIONAL">Funcional
+            <input type="radio" name="tipo" id="id_tipo" value="N_FUNCIONAL">Não Funcional
+            <% } else {%>
+            <input type="radio" name="tipo" id="id_tipo" value="FUNCIONAL">Funcional
+            <input type="radio" checked="on" name="tipo" id="id_tipo" value="N_FUNCIONAL">Não Funcional
+            <% } %>
         </div>
         <div>
             <label for="id_sigla">Sigla: </label><br>
-            <input type="text" name="sigla" id="id_sigla">
+            <input type="text" name="sigla" id="id_sigla" value="<%= requisito.getSigla() %>">
         </div>
         <div>
             <label for="id_nome">Nome: </label><br>
-            <input type="text" name="nome" id="id_nome">
+            <input type="text" name="nome" id="id_nome" value="<%= requisito.getNome()%>">
         </div>
         <div>
             <label for="id_descricao">Descrição: </label><br>
-            <input type="text" name="descricao" id="id_descricao">
+            <!-- <input type="text" name="descricao" id="id_descricao" value=""> -->
+            <textarea name="descricao" id="id_descricao" cols="30" rows="10"><%= requisito.getDescricao()%></textarea>
         </div>
-        <select name="escopo">
-            <option value="">Selecione</option>
-            <option value="usuario">Usuário</option>
-            <option value="sistema">Sistema</option>
-        </select>
+        <div>
+            <select name="escopo">
+                <option value="">Selecione</option>
+                <% if(requisito.getEscopo().equals("USUARIO")){ %>
+                <option selected="on" value="USUARIO">Usuário</option>
+                <option value="SISTEMA">Sistema</option>
+                <% }else{ %>
+                <option value="USUARIO">Usuário</option>
+                <option selected="on" value="SISTEMA">Sistema</option>
+                <% } %>
+            </select>
+        </div>
+        <br>
         <div>
             <input type="submit" value="CANCELAR" formaction="index.jsp">
-            <input type="submit" value="SALVAR">
+            <input type="submit" name="acao" value="ATUALIZAR">
         </div>
 </body>
 

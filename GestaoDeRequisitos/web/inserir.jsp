@@ -19,8 +19,8 @@
     <form action="ServicoRequisito" method="post">
         <div>
 
-            <input type="radio" name="tipo" id="id_tipo" value="funcional">Funcional
-            <input type="radio" name="tipo" id="id_tipo" value="nao_funcional">Não Funcional
+            <input type="radio" checked="on" name="tipo" id="id_tipo" value="FUNCIONAL">Funcional
+            <input type="radio" name="tipo" id="id_tipo" value="N_FUNCIONAL">Não Funcional
         </div>
         <div>
             <label for="id_sigla">Sigla: </label><br>
@@ -32,13 +32,16 @@
         </div>
         <div>
             <label for="id_descricao">Descrição: </label><br>
-            <input type="text" name="descricao" id="id_descricao">
+            <!-- <input type="text" name="descricao" id="id_descricao"> -->
+            <textarea name="descricao" id="id_descricao" cols="30" rows="10"></textarea>
         </div>
-        <select name="escopo">
-            <option value="">Selecione</option>
-            <option value="usuario">Usuário</option>
-            <option value="sistema">Sistema</option>
-        </select>
+        <div>
+            <select name="escopo">
+                <option value="">Selecione</option>
+                <option value="USUARIO">Usuário</option>
+                <option value="SISTEMA">Sistema</option>
+            </select>
+        </div><br>
         <div>
             <input type="submit" value="CANCELAR" formaction="index.jsp">
             <input type="submit" name="acao" value="SALVAR">

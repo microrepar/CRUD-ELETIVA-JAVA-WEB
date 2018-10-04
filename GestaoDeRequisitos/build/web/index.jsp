@@ -27,10 +27,10 @@
 
     <body>
         <h1>Requisitos</h1>
-        <form action="" method="get">
+        <form action="ServicoRequisito" method="post">
             <div>
                 <input type="text" name="filtro" id="id_filtro" placeholder="Insira um filtro">
-                <input type="submit" value="FILTRAR">
+                <input type="submit" name="acao" value="FILTRAR">
             </div>
         </form>
 
@@ -53,7 +53,13 @@
                         <td><%= requisito.getSigla()%></td>
                         <td><%= requisito.getNome()%></td>
                         <td><%= requisito.getEscopo()%></td>
-                        <td> <input type="submit" value="EXCLUIR"></td>
+                        <td> 
+                            <form action="ServicoRequisito" method="post">
+                                <input type="text" hidden  name="id" value="<%= requisito.getId() %>">
+                                <input type="submit" name="acao" value="EXCLUIR">
+                                <input type="submit" name="acao" value="EDITAR">
+                            </form>                            
+                        </td>
                     </tr>
                     <%
                         }

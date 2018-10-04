@@ -27,7 +27,6 @@ public class ServicoRequisito extends HttpServlet {
 
             if (null != request.getParameter("acao")) {
                 if (request.getParameter("acao").equals("SALVAR")) {
-                    System.out.println("=>> ENTROU NO SALVAR");
                     Requisito requisito = new Requisito();
                     requisito.setSigla((String) request.getParameter("sigla"));
                     requisito.setTipo((String) request.getParameter("tipo"));
@@ -38,9 +37,46 @@ public class ServicoRequisito extends HttpServlet {
                     // Redireciona para a listagem com sendRedirect - evita o problema com o Reload (F5).
                     response.sendRedirect(request.getContextPath()+"/ServicoRequisito");
                     return;
-                }else if(request.getParameter("acao").equals("EXCLUIR")){
+                }else if(request.getParameter("acao").equals("EXCLUIR")){                                        
+                    long id = Long.parseLong(request.getParameter("id"));
+                    Requisito requisito = dao.buscarPorId(id);
+                    RequisitoDTO requisitoDTO = RequisitoDTO.de(requisito);
+                    request.setAttribute("requisito", requisitoDTO);
+                    request.getRequestDispatcher("/confirmarExclusao.jsp")
+                            .forward(request, response);
+                    return;                                        
+                }else if(request.getParameter("acao").equals("SIM")){
                     long id = Long.parseLong(request.getParameter("id"));
                     dao.excluir(id);
+                    response.sendRedirect(request.getContextPath()+"/ServicoRequisito");
+                    return;
+                }else if(request.getParameter("acao").equals("EDITAR")){
+                    long id = Long.parseLong(request.getParameter("id"));
+                    Requisito requisito = dao.buscarPorId(id);
+                    RequisitoDTO dto = RequisitoDTO.de(requisito);
+                    request.setAttribute("requisito", dto);
+                    request.getRequestDispatcher("/atualizar.jsp").forward(request, response);
+                    return;
+                }else if(request.getParameter("acao").equals("ATUALIZAR")){
+                    Requisito requisito = new Requisito();
+                    requisito.setId(Long.parseLong(request.getParameter("id")));
+                    requisito.setSigla((String) request.getParameter("sigla"));
+                    requisito.setTipo((String) request.getParameter("tipo"));
+                    requisito.setNome((String) request.getParameter("nome"));
+                    requisito.setDescricao((String) request.getParameter("descricao"));
+                    requisito.setEscopo((String) request.getParameter("escopo"));
+                    dao.atualizar(requisito);
+                    // Redireciona para a listagem com sendRedirect - evita o problema com o Reload (F5).
+                    response.sendRedirect(request.getContextPath()+"/ServicoRequisito");
+                    return;
+                    
+                }else if (request.getParameter("acao").equals("FILTRAR")){
+                    String filtro = request.getParameter("filtro");
+                    List<Requisito> requisitos = dao.filtrarPorNome(filtro);
+                    List<RequisitoDTO> dtos = RequisitoDTO.listaDe(requisitos);
+                    request.setAttribute("requisitos", dtos);
+                    request.getRequestDispatcher("/index.jsp").forward(request, response);
+                    return;
                 }
 
             } else {
@@ -48,7 +84,6 @@ public class ServicoRequisito extends HttpServlet {
                 List<Requisito> requisitos = dao.listarTodos();
                 request.setAttribute("requisitos", RequisitoDTO.listaDe(requisitos));
                 request.getRequestDispatcher("/index.jsp").forward(request, response);
-                System.out.println("=>> ENTROU NO ELSE" + requisitos);
                 return;
             }
 

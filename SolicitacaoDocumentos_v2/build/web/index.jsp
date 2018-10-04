@@ -28,7 +28,7 @@
         <h1>Listagem de Solicitações de Documento</h1>
         <a href="inserir.jsp">NOVO</a>
         <form action="ServicoSolicitacao">
-            <input type="text" name="filtrar" placeholder="Informe um filtro" /><input type="submit" name="acao" value="Pesquisar" />
+            <input type="text" name="filtrar" placeholder="Informe um filtro" /><input type="submit" name="acao" value="FILTRAR" />
         </form>
         <table border="1">
             <thead>
