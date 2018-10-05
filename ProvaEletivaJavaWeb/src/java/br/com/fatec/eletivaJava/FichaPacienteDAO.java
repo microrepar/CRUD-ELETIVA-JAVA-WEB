@@ -62,4 +62,24 @@ public class FichaPacienteDAO {
         fonteConexao.devolverConexao(conexao);
     }
 
+    void excluir(int id) throws SQLException {
+        PreparedStatement sql = conexao.prepareStatement("DELETE FROM ficha WHERE id=" + id);
+        sql.executeUpdate();
+    }
+
+    void atualizar(FichaPaciente ficha) throws SQLException {
+        PreparedStatement sql = conexao.prepareStatement("UPDATE ficha SET cpf=?, nome_paciente=?, especialidade=?, gravidade=?, desc_sintomas=? WHERE id=?");
+        sql.setString(1, ficha.getCpf());
+        sql.setString(2, ficha.getNome());
+        sql.setString(3, ficha.getEspecialidade());
+        sql.setString(4, ficha.getGravidade());
+        sql.setString(5, ficha.getDescSintomas());
+        sql.setInt(6, ficha.getId());
+        sql.executeUpdate();
+    }
+
+    FichaPaciente buscaPorId(String parameter) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

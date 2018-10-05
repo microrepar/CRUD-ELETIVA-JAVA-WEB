@@ -1,0 +1,136 @@
+RA com final 0: Gestão de Hospedagem (Motel)
+==============================
+O caso de uso tem 5 cenários: inserção, exclusão, alteração, listagem de todos e relatório.
+O cenário de relatório deve exibir uma tabela na qual cada linha exibe o tipo da suíte, o número de hospedagens neste tipo de suíte e a receita total (usar a função COUNT(id) e SUM(valor_hospedagem + valor_opcionais) e GROUP BY(suite) no SQL).
+
+Número da suíte
+Tipo de suíte (Pé sujo, Simples, Luxo, Master, Presidencial)
+Nome da suíte
+Capacidade
+Descrição de amenidades da suíte (o que ela tem)
+Data/hora da entrada
+Data/hora da saída
+Valor da hospedagem
+Valor de adicionais
+
+RA com final 1: Gestão de Abastecimento (Posto de Combustível)
+=============================================
+O caso de uso tem 5 cenários: inserção, exclusão, alteração, listagem de todos e relatório.
+O cenário de relatório deve exibir uma tabela na qual cada linha exibe o número de um funcionário e o valor total de abstecimentos feito
+por este funcionário (usar a função SUM(valor) e GROUP BY(codigo_funcionario) no SQL).
+
+Código do funcionário
+CPF do Cliente
+Tipo de combustível (Álcool, Gasolina ou Diesel)
+Quantidade abastecida em litros
+Valor em reais
+Tipo de pagamento (Dinheiro, cartão de débito, cartão de crédito)
+Data e hora do abastecimento (tipo TIMESTAMP no Postgres)
+
+RA com final 2: Gestão de Pacientes (Hospital)
+==============================
+O caso de uso tem 5 cenários: inserção, exclusão, alteração, listagem de todos e relatório.
+O cenário de relatório deve exibir uma tabela na qual cada linha exibe um tipo de gravidade de atendimento e o total de atendimentos feito
+para este tipo (usar a função COUNT(id) e GROUP BY(gravidade) no SQL).
+
+CPF do Paciente
+Nome do paciente
+Especialidade (Clínico Geral, Ortopedia, Pediatria)
+Gravidade (BAIXA, MÉDIA, ALTA)
+Descrição dos sintomas
+Data e hora da entrada do paciente (tipo TIMESTAMP no Postgres)
+
+RA com final 3: Gestão de Investimentos (Mercado de Capitais)
+==============================
+O caso de uso tem 5 cenários: inserção, exclusão, alteração, listagem de todos e relatório.
+O cenário de relatório deve exibir uma tabela na qual cada linha exibe o nome de um investidor e o total de lucro/prejuízo do investidor (usar a função SUM((venda-compra) * quantidade) e GROUP BY(codigo_investidor) no SQL).
+
+Código do investidor
+Nome do investidor
+Código da empresa da qual se compra ações
+Quantidade de ações compradas
+Data/hora da compra
+Preço da ação na compra
+Data/hora da venda
+Preço da ação na venda
+
+RA com final 4: Gestão de Vacinas (Zoonose)
+==============================
+O caso de uso tem 5 cenários: inserção, exclusão, alteração, listagem de todos e relatório.
+O cenário de relatório deve exibir uma tabela na qual cada linha exibe o nome de um animal e o número de vacinas que ele tomou (usar a função COUNT(id) e GROUP BY(codigo_animal) no SQL).
+
+Código do animal
+Nome do animal
+Código da vacina
+Nome da vacina
+Dosagem da vacina
+Data/hora da aplicação
+Tipo de animal (Cachorro, Gato, Jacaré ou Panda)
+Sexo do animal (Macho, Fêmea)
+
+RA com final 5: Gestão de Pedidos (Fast-food)
+==============================
+O caso de uso tem 5 cenários: inserção, exclusão, alteração, listagem de todos e relatório.
+O cenário de relatório deve exibir uma tabela na qual cada linha exibe o nome do combo e o número de pedidos realizados deste combo, bem como o total de receita para o combo (usar a função COUNT(id) e SUM(preco) e GROUP BY(numero_combo) no SQL).
+
+Número do combo
+Tipo de Acompanhamento (Pequeno, Médio, Grande)
+Bebida (Suco ou Refrigerante)
+Qual sabor do suco ou refrigerante
+Data/hora da venda
+Preço do combo
+
+RA com final 6: Gestão de Hospedagem (Motel)
+==============================
+O caso de uso tem 5 cenários: inserção, exclusão, alteração, listagem de todos e relatório.
+O cenário de relatório deve exibir uma tabela na qual cada linha exibe o tipo da suíte, o número de hospedagens neste tipo de suíte e a receita total (usar a função COUNT(id) e SUM(valor_hospedagem + valor_opcionais) e GROUP BY(suite) no SQL).
+
+Número da suíte
+Tipo de suíte (Pé sujo, Simples, Luxo, Master, Presidencial)
+Nome da suíte
+Capacidade
+Descrição de amenidades da suíte (o que ela tem)
+Data/hora da entrada
+Data/hora da saída
+Valor da hospedagem
+Valor de adicionais
+
+RA com final 7: Gestão de Investimentos (Mercado de Capitais)
+==============================
+O caso de uso tem 5 cenários: inserção, exclusão, alteração, listagem de todos e relatório.
+O cenário de relatório deve exibir uma tabela na qual cada linha exibe o nome de um investidor e o total de lucro/prejuízo do investidor (usar a função SUM((venda-compra) * quantidade) e GROUP BY(codigo_investidor) no SQL).
+
+Código do investidor
+Nome do investidor
+Código da empresa da qual se compra ações
+Quantidade de ações compradas
+Data/hora da compra
+Preço da ação na compra
+Data/hora da venda
+Preço da ação na venda
+
+RA com final 8: Gestão de Vacinas (Zoonose)
+==============================
+O caso de uso tem 5 cenários: inserção, exclusão, alteração, listagem de todos e relatório.
+O cenário de relatório deve exibir uma tabela na qual cada linha exibe o nome de um animal e o número de vacinas que ele tomou (usar a função COUNT(id) e GROUP BY(codigo_animal) no SQL).
+
+Código do animal
+Nome do animal
+Código da vacina
+Nome da vacina
+Dosagem da vacina
+Data/hora da aplicação
+Tipo de animal (Cachorro, Gato, Jacaré ou Panda)
+Sexo do animal (Macho, Fêmea)
+
+RA com final 9: Gestão de Pedidos (Fast-food)
+==============================
+O caso de uso tem 5 cenários: inserção, exclusão, alteração, listagem de todos e relatório.
+O cenário de relatório deve exibir uma tabela na qual cada linha exibe o nome do combo e o número de pedidos realizados deste combo, bem como o total de receita para o combo (usar a função COUNT(id) e SUM(preco) e GROUP BY(numero_combo) no SQL).
+
+Número do combo
+Tipo de Acompanhamento (Pequeno, Médio, Grande)
+Bebida (Suco ou Refrigerante)
+Qual sabor do suco ou refrigerante
+Data/hora da venda
+Preço do combo
