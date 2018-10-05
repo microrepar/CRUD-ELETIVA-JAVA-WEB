@@ -17,15 +17,15 @@ public class FonteConexao {
 
     public Connection getConnection() throws ClassNotFoundException, SQLException {
         // Define o driver de conexão com o banco de dados
-        //Class.forName("com.mysql.jdbc.Driver");
-         Class.forName("org.postgresql.Driver");
-        
-        //Connection conexao = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/requisito_bd?useLegacyDatetimeCode=false&serverTimezone=America/New_York", "requisito_usuario", "abc12345");
-        Connection conexao = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/prova_bd", "postgres", "123Fatec");
+//        Class.forName("com.mysql.jdbc.Driver");
+        Class.forName("org.postgresql.Driver");
+
+//        Connection conexao = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/prova_bd?useLegacyDatetimeCode=false&serverTimezone=America/New_York", "ficha_usuario", "abc12345");
+        Connection conexao = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/prova_bd", "postgres", "ma180597");
         return conexao;
     }
-    
-    public void devolverConexao(Connection conexao) throws SQLException{
+
+    public void devolverConexao(Connection conexao) throws SQLException {
         conexao.close();
     }
 }

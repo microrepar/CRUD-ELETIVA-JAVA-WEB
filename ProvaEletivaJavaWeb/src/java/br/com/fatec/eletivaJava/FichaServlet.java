@@ -29,6 +29,7 @@ public class FichaServlet extends HttpServlet {
             if(null != request.getParameter("acao")){ 
                 
                 if(request.getParameter("acao").equals("SALVAR")){
+                    System.out.println("-->>> ENTROU NO SALVAR DA SERVLET <<<<");
                     FichaPaciente ficha = new FichaPaciente();
                     ficha.setCpf(request.getParameter("cpf"));
                     ficha.setNome(request.getParameter("nome"));
@@ -36,6 +37,7 @@ public class FichaServlet extends HttpServlet {
                     ficha.setDescSintomas(request.getParameter("descricao"));
                     ficha.setGravidade(request.getParameter("gravidade"));
                     dao.salvar(ficha);
+                    System.out.println("-->>> SAIU NO SALVAR DA SERVLET DEPOIS DO DAO <<<<");
                     response.sendRedirect(request.getContextPath()+"/FichaServlet");
                     return;
                 }

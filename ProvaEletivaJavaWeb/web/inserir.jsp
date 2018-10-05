@@ -13,7 +13,7 @@
     </head>
     <body>
         <h1>Nova Ficha</h1>
-        <form action="ServicoRequisito" method="post">
+        <form action="FichaServlet" method="post">
             <div>
                 <label for="id_cpf">CPF: </label><br>
                 <input type="text" name="cpf" id="id_cpf">

@@ -25,7 +25,7 @@ public class FichaPacienteDAO {
         conexao = fonteConexao.getConnection();
     }
 
-    public List<FichaPaciente> listarTodos() throws SQLException {
+    public List<FichaPaciente> listarTodos() throws ClassNotFoundException, SQLException {
         // Executa o SQL de pesquisa
         PreparedStatement sql = conexao.prepareStatement("SELECT id, cpf, nome_paciente, especialidade, gravidade, desc_sintomas, data_hora FROM ficha");
         ResultSet resultado = sql.executeQuery();
@@ -48,16 +48,16 @@ public class FichaPacienteDAO {
         return fichas;
     }
 
-    public void salvar(FichaPaciente ficha) throws SQLException {
+    public void salvar(FichaPaciente ficha) throws ClassNotFoundException, SQLException {
         // Executa o SQL de inserção
-        PreparedStatement sql = conexao.prepareStatement("INSERT INTO ficha(cpf, nome_paciente, especialidade, gravidade, desc_sintomas, data_hora) VALUE(?,?,?,?,?,?)");
+        PreparedStatement sql = conexao.prepareStatement("INSERT INTO ficha(cpf, nome_paciente, especialidade, gravidade, desc_sintomas, data_hora) VALUES(?,?,?,?,?,?)");
         sql.setString(1, ficha.getCpf());
         sql.setString(2, ficha.getNome());
         sql.setString(3, ficha.getEspecialidade());
         sql.setString(4, ficha.getGravidade());
         sql.setString(5, ficha.getDescSintomas());
         sql.setDate(6, new java.sql.Date(new java.util.Date().getTime()));
-        sql.execute();
+        sql.executeUpdate();
 
         fonteConexao.devolverConexao(conexao);
     }

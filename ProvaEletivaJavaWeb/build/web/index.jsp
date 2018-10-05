@@ -50,7 +50,7 @@
                     <td><%= ficha.getGravidade()%></td>
                     <td><%= ficha.getDataHora()%></td>
                     <td>
-                        <form action="ServicoFichaPaciente" method="post">
+                        <form action="FichaServlet" method="post">
                             <input type="text" hidden  name="id" value="<%= ficha.getId() %>">
                             <input type="submit" name="acao" value="EXCLUIR">
                             <input type="submit" name="acao" value="EDITAR">
