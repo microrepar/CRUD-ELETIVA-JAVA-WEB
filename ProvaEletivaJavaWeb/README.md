@@ -3,7 +3,8 @@ MAURICIO DA COSTA SILVA ADS NOITE
 RA com final 2: Gestão de Pacientes (Hospital)
 ==============================
 O caso de uso tem 5 cenários: inserção, exclusão, alteração, listagem de todos e relatório.
-O cenário de relatório deve exibir uma tabela na qual cada linha exibe um tipo de gravidade de atendimento e o total de atendimentos feito
+
+O cenário de relatório deve exibir uma tabela na qual cada linha exibe um tipo de gravidade de atendimento e o total de atendimentos feito 
 para este tipo (usar a função COUNT(id) e GROUP BY(gravidade) no SQL).
 
 CPF do Paciente
@@ -38,3 +39,16 @@ TABLESPACE pg_default;
 
 ALTER TABLE public.ficha
     OWNER to postgres;
+
+----------------------------------------------------------------
+
+CREATE TABLE `ficha` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `cpf` varchar(11) DEFAULT NULL,
+  `nome_paciente` varchar(200) DEFAULT NULL,
+  `especialidade` varchar(45) DEFAULT NULL,
+  `gravidade` varchar(45) DEFAULT NULL,
+  `desc_sintomas` longtext,
+  `data_hora` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8

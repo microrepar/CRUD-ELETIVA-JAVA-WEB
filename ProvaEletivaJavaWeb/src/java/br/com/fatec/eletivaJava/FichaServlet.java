@@ -38,10 +38,18 @@ public class FichaServlet extends HttpServlet {
                     dao.salvar(ficha);
                     response.sendRedirect(request.getContextPath() + "/FichaServlet");
                     return;
-                } else if (request.getParameter("acao").equals("EXCLUIR")) {
+                }else if(request.getParameter("acao").equals("EXCLUIR")){
+                    int id = Integer.parseInt(request.getParameter("id"));
+                    FichaPacienteDTO dto = FichaPacienteDTO.de(dao.buscarPorId(id));
+                    request.setAttribute("ficha", dto);
+                    request.getRequestDispatcher("confirmarExcluir.jsp").forward(request, response);
+                    return;
+                    
+                } else if (request.getParameter("acao").equals("SIM")) {
                     int id = Integer.parseInt(request.getParameter("id"));
                     dao.excluir(id);
                     response.sendRedirect(request.getContextPath() + "/FichaServlet");
+                    return;
                 } else if (request.getParameter("acao").equals("ATUALIZAR")) {
                     FichaPaciente ficha = new FichaPaciente();
                     ficha.setId(Integer.parseInt(request.getParameter("id")));
@@ -54,12 +62,20 @@ public class FichaServlet extends HttpServlet {
                     response.sendRedirect(request.getContextPath() + "/FichaServlet");
                     return;
                 }else if(request.getParameter("acao").equals("EDITAR")){
-                    FichaPaciente ficha = dao.buscaPorId(request.getParameter("id"));
+                    int id = Integer.parseInt(request.getParameter("id"));
+                    FichaPaciente ficha = dao.buscarPorId(id);
                     FichaPacienteDTO dto = FichaPacienteDTO.de(ficha);
                     request.setAttribute("ficha", dto);
-                    request.getRequestDispatcher("atulizar.jsp").forward(request, response);
+                    request.getRequestDispatcher("atualizar.jsp").forward(request, response);
                     return;
-                }                
+                }else if(request.getParameter("acao").equals("RELATORIO")){
+                    System.out.println(">>>>> RESULTADO");
+                    List<RelatorioGravidadeDTO> gravidades = dao.listarRelatorio();
+                    request.setAttribute("relatorios", gravidades);
+                    request.getRequestDispatcher("relatorio.jsp").forward(request, response);
+                    return;
+                }
+
                 
             } else {
                 FichaPaciente ficha = new FichaPaciente();

@@ -25,7 +25,7 @@
     <body>
         <h1>Fichas dos Pacientes</h1>
         <div>
-            <a href="">RELATÓRIO</a>
+            <a href="FichaServlet?acao=RELATORIO">RELATÓRIO</a>
             <a href="inserir.jsp">NOVA FICHA</a>
         </div> <br>
         <table border="1">

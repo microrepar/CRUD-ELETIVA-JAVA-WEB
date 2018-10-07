@@ -62,12 +62,14 @@ public class FichaPacienteDAO {
         fonteConexao.devolverConexao(conexao);
     }
 
-    void excluir(int id) throws SQLException {
+    public void excluir(int id) throws SQLException {
         PreparedStatement sql = conexao.prepareStatement("DELETE FROM ficha WHERE id=" + id);
         sql.executeUpdate();
+
+        fonteConexao.devolverConexao(conexao);
     }
 
-    void atualizar(FichaPaciente ficha) throws SQLException {
+    public void atualizar(FichaPaciente ficha) throws SQLException {
         PreparedStatement sql = conexao.prepareStatement("UPDATE ficha SET cpf=?, nome_paciente=?, especialidade=?, gravidade=?, desc_sintomas=? WHERE id=?");
         sql.setString(1, ficha.getCpf());
         sql.setString(2, ficha.getNome());
@@ -76,10 +78,44 @@ public class FichaPacienteDAO {
         sql.setString(5, ficha.getDescSintomas());
         sql.setInt(6, ficha.getId());
         sql.executeUpdate();
+
+        fonteConexao.devolverConexao(conexao);
     }
 
-    FichaPaciente buscaPorId(String parameter) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public FichaPaciente buscarPorId(int id) throws SQLException {
+        PreparedStatement sql = conexao.prepareStatement("SELECT id, cpf, nome_paciente, especialidade, gravidade, desc_sintomas, data_hora FROM ficha WHERE id=" + id);
+        ResultSet resultado = sql.executeQuery();
+
+        FichaPaciente ficha = null;
+        if (resultado.next()) {
+            ficha = new FichaPaciente();
+            ficha.setId(resultado.getInt("id"));
+            ficha.setCpf(resultado.getString("cpf"));
+            ficha.setNome(resultado.getString("nome_paciente"));
+            ficha.setEspecialidade(resultado.getString("especialidade"));
+            ficha.setGravidade(resultado.getString("gravidade"));
+            ficha.setDescSintomas(resultado.getString("desc_sintomas"));
+            ficha.setDataHora(resultado.getDate("data_hora"));
+        }
+
+        fonteConexao.devolverConexao(conexao);
+
+        return ficha;
+    }
+
+    List<RelatorioGravidadeDTO> listarRelatorio() throws SQLException {
+        PreparedStatement sql = conexao.prepareStatement("SELECT gravidade, COUNT(*) as total FROM ficha GROUP BY gravidade");
+        ResultSet resultado = sql.executeQuery();
+
+        List<RelatorioGravidadeDTO> relatorioGravidades = new ArrayList<>();
+        while (resultado.next()) {
+            RelatorioGravidadeDTO relatorioDTO = new RelatorioGravidadeDTO();
+            relatorioDTO.setGravidade(resultado.getString("gravidade"));
+            relatorioDTO.setTotal(resultado.getInt("total"));
+            relatorioGravidades.add(relatorioDTO);
+        }
+
+        return relatorioGravidades;
     }
 
 }
