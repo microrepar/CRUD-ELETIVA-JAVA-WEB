@@ -4,6 +4,7 @@
     Author     : m.c.silva
 --%>
 
+<%@page import="br.com.eletivajavaweb.util.ConverteDataHora"%>
 <%@page import="br.com.eletivajavaweb.InvestimentoDTO"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -52,9 +53,9 @@
                     <td><%= investimento.getNomeInvestidor() %></td>
                     <td><%= investimento.getCodigoEmpresaCorretora() %></td>
                     <td><%= investimento.getQtdAcoes() %></td>
-                    <td><%= investimento.getDataHoraCompra() %></td>
+                    <td><%= ConverteDataHora.converteDataString(investimento.getDataHoraCompra()) %></td>
                     <td><%= investimento.getPrecoAcaoCompra() %></td>
-                    <td><%= investimento.getDataHoraVenda() %></td>
+                    <td><%= ConverteDataHora.converteDataString(investimento.getDataHoraVenda()) %></td>
                     <td><%= investimento.getPrecoAcaoVenda() %></td>
                     <td>
                         <form action="Servlet" method="get">

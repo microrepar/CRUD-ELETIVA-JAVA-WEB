@@ -13,14 +13,14 @@ Data/hora da venda
 Preço da ação na venda
 
 
-id, codigoInvestidor, nomeInvestidor; , codigoEmpresaCorretora, qtdAcoes, dataHoraCompra, dataHoraVenda, precoAcaoCompra, precoAcaoVenda
+id, codigoInvestidor, nomeInvestidor; , codigoCorretora, qtdAcoes, dataHoraCompra, dataHoraVenda, precoAcaoCompra, precoAcaoVenda
 
 USE investimento_bd;
 CREATE TABLE investimento(
 id INT NOT NULL AUTO_INCREMENT,
 codigoInvestidor VARCHAR(45) NULL,
 nomeInvestidor VARCHAR(200) NULL,
-codigoEmpresaCorretora VARCHAR(45) NULL,
+codigoCorretora VARCHAR(45) NULL,
 qtdAcoes INT NULL,
 dataHoraCompra DATETIME NULL,
 dataHoraVenda DATETIME NULL,
@@ -32,7 +32,7 @@ PRIMARY KEY (id));
 id 
 codigoInvestidor
 nomeInvestidor
-codigoEmpresaCorretora
+codigoCorretora
 qtdAcoes
 dataHoraCompra
 dataHoraVenda
@@ -47,10 +47,18 @@ CREATE TABLE investimento(
 id INT NOT NULL AUTO_INCREMENT,
 codigoInvestidor VARCHAR(45) NULL,
 nomeInvestidor VARCHAR(200) NULL,
-codigoEmpresaInvestimento VARCHAR(45) NULL,
+codigoCorretora VARCHAR(45) NULL,
 qtdAcoes INT NULL,
 dataHoraCompra DATETIME NULL,
 dataHoraVenda DATETIME NULL,
 precoAcaoCompra REAL NULL,
 precoAcaoVenda REAL NULL,
 PRIMARY KEY (id));
+
+
+
+
+
+
+
+

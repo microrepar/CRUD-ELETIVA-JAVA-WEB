@@ -1,11 +1,13 @@
 package br.com.eletivajavaweb;
 
+import br.com.eletivajavaweb.util.ConverteDataHora;
 import java.util.Date;
 
 public class Investimento {
+
     private int id;
     private String codigoInvestidor;
-    private String nomeInvestidor;  
+    private String nomeInvestidor;
     private String codigoEmpresaCorretora;
     private int qtdAcoes;
     private Date dataHoraCompra;
@@ -84,5 +86,13 @@ public class Investimento {
     public void setPrecoAcaoVenda(double precoAcaoVenda) {
         this.precoAcaoVenda = precoAcaoVenda;
     }
-    
+
+    void setDataHoraCompra(String data, String hora) {
+        this.dataHoraCompra = ConverteDataHora.converteStringData(data + " " + hora);
+    }
+
+    void setDataHoraVenda(String data, String hora) {
+        this.dataHoraVenda = ConverteDataHora.converteStringData(data + " " + hora);
+    }
+
 }

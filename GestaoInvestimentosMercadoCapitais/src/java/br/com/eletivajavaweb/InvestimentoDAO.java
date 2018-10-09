@@ -9,6 +9,23 @@ public class InvestimentoDAO extends AbstractDAO {
 
     @Override
     public void salvar(Investimento inv) throws SQLException {
+        openConnection();
+        
+        sql = conexao.prepareStatement("INSERT INTO investimento(codigoInvestidor,"
+                + " nomeInvestidor, codigoCorretora, qtdAcoes, dataHoraCompra,"
+                + " dataHoraVenda, precoAcaoCompra, precoAcaoVenda) "
+                + "VALUES(?,?,?,?,?,?,?,?)");
+        sql.setString(1, inv.getCodigoInvestidor());
+        sql.setString(2, inv.getNomeInvestidor());
+        sql.setString(3, inv.getCodigoInvestidor());
+        sql.setInt(4, inv.getQtdAcoes());
+        sql.setDate(5, new java.sql.Date(inv.getDataHoraCompra().getTime()));
+        sql.setDate(6, new java.sql.Date(inv.getDataHoraVenda().getTime()));
+        sql.setDouble(7, inv.getPrecoAcaoCompra());
+        sql.setDouble(8, inv.getPrecoAcaoVenda());
+        sql.executeUpdate();
+        
+        FonteConexao.devolverConexao(conexao);
     }
 
     @Override
@@ -29,7 +46,7 @@ public class InvestimentoDAO extends AbstractDAO {
         openConnection();
         
         sql = conexao.prepareStatement("SELECT id, codigoInvestidor, nomeInvestidor,"
-                + " codigoEmpresaCorretora, qtdAcoes, dataHoraCompra, dataHoraVenda,"
+                + " codigoCorretora, qtdAcoes, dataHoraCompra, dataHoraVenda,"
                 + " precoAcaoCompra, precoAcaoVenda  FROM investimento");
         
         ResultSet resultado = sql.executeQuery();
@@ -40,7 +57,7 @@ public class InvestimentoDAO extends AbstractDAO {
             inv.setId(resultado.getInt("id"));
             inv.setCodigoInvestidor(resultado.getString("codigoInvestidor"));
             inv.setNomeInvestidor(resultado.getString("nomeInvestidor"));
-            inv.setCodigoEmpresaCorretora(resultado.getString("codigoEmpresaCorretora"));
+            inv.setCodigoEmpresaCorretora(resultado.getString("codigoCorretora"));
             inv.setQtdAcoes(resultado.getInt("qtdAcoes"));
             inv.setDataHoraCompra(resultado.getDate("dataHoraCompra"));
             inv.setDataHoraVenda(resultado.getDate("dataHoraVenda"));
