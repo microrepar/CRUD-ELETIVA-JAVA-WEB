@@ -1,4 +1,4 @@
-package br.com.fatecmogidascruzes.topicos;
+package br.com.fatecmogidascruzes.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

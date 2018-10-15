@@ -1,5 +1,6 @@
-package br.com.fatecmogidascruzes.topicos;
+package br.com.fatecmogidascruzes.solicitacao.dto;
 
+import br.com.fatecmogidascruzes.solicitacao.Solicitacao;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,4 +1,4 @@
-<%@page import="br.com.fatecmogidascruzes.topicos.SolicitacaoDTO"%>
+<%@page import="br.com.fatecmogidascruzes.solicitacao.dto.SolicitacaoDTO"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>

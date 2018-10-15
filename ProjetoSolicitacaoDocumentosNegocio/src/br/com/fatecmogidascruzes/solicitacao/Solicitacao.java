@@ -1,4 +1,4 @@
-package br.com.fatecmogidascruzes.topicos;
+package br.com.fatecmogidascruzes.solicitacao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

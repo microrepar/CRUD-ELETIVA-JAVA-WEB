@@ -1,7 +1,8 @@
 package br.com.fatecmogidascruzes.topicos;
 
-import br.com.fatecmogidascruzes.topicos.Solicitacao;
-import br.com.fatecmogidascruzes.topicos.SolicitacaoDTO;
+import br.com.fatecmogidascruzes.solicitacao.Solicitacao;
+import br.com.fatecmogidascruzes.solicitacao.data.SolicitacaoDAO;
+import br.com.fatecmogidascruzes.solicitacao.dto.SolicitacaoDTO;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -58,7 +59,7 @@ public class ServicoSolicitacao extends HttpServlet {
                     request.getRequestDispatcher("/alterar.jsp").forward(request, response);
                     return;
 
-                } else if (request.getParameter("acao").equals("Pesquisar")) {
+                } else if (request.getParameter("acao").equals("filtrar")) {
                     Solicitacao solicitacao = new Solicitacao();
                     List<Solicitacao> solicitacoes = solicitacaoDAO.filtrar(request.getParameter("filtrar"));
                     request.setAttribute("solicitacoes", SolicitacaoDTO.listaDe(solicitacoes));

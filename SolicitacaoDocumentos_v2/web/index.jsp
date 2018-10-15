@@ -1,4 +1,4 @@
-<%@page import="br.com.fatecmogidascruzes.topicos.SolicitacaoDTO"%>
+<%@page import="br.com.fatecmogidascruzes.solicitacao.dto.SolicitacaoDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -28,7 +28,8 @@
         <h1>Listagem de Solicitações de Documento</h1>
         <a href="inserir.jsp">NOVO</a>
         <form action="ServicoSolicitacao">
-            <input type="text" name="filtrar" placeholder="Informe um filtro" /><input type="submit" name="acao" value="FILTRAR" />
+            <input type="text" name="filtrar" placeholder="Informe um filtro" />
+            <input type="submit" name="acao" value="filtrar" />
         </form>
         <table border="1">
             <thead>

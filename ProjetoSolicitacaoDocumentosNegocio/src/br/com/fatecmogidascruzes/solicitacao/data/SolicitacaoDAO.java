@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.fatecmogidascruzes.topicos;
+package br.com.fatecmogidascruzes.solicitacao.data;
 
+import br.com.fatecmogidascruzes.solicitacao.Solicitacao;
+import br.com.fatecmogidascruzes.util.FonteConexoesBurra;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,11 +28,13 @@ public class SolicitacaoDAO {
     }
 
     public void salvar(Solicitacao solicitacao) throws SQLException {
-        PreparedStatement sql = conexao.prepareStatement("UPDATE solicitacoes SET ra_aluno=?, nome_aluno=?, tipo_documento=?, data_ultima_atualizacao=now() WHERE id=?");
+        PreparedStatement sql = conexao.prepareStatement("INSERT INTO solicitacoes(ra_aluno, nome_aluno, tipo_documento, situacao, data_solicitacao, data_ultima_atualizacao) VALUES(?,?,?,?,?,?)");
         sql.setString(1, solicitacao.getRaAluno());
         sql.setString(2, solicitacao.getNomeAluno());
         sql.setString(3, solicitacao.getTipoDocumento());
-        sql.setInt(4, solicitacao.getId());
+        sql.setString(4, solicitacao.getSituacao());
+        sql.setDate(5, new java.sql.Date(System.currentTimeMillis()));
+        sql.setDate(6, new java.sql.Date(System.currentTimeMillis()));
         sql.executeUpdate();
 
         fonteConexao.devolverConexao(conexao);
